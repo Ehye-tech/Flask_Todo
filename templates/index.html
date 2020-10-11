@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {%if name == 'SOLE'%}
+    <h1>HELLO</h1>
+    {%else%}
+    <h1>BYE!</h1>
+    {%endif%}
+    <hr/>
+    <h1>{{ name }}'s TODO LIST</h1>
+    <form action="#"  method = "POST">
+        <input type="text" name = "new_task">
+        <button type = "submit">ADD</button>
+    </form>
+    {% for task in todo %}
+        <li>
+            {{task}}
+            <a href="{{ url_for('delete', task = task) }}"> delete </a>
+            <form action="{{ url_for('update', task = task) }}"  method = "POST">
+                <input type="text" name = "update_task">
+                <button type = "submit">update</button>
+            </form>
+        </li>
+    {% endfor %}
+    
+    
+</body>
+</html>
