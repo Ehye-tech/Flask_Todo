@@ -58,13 +58,21 @@ def get_todo(id):
     todo = Todos.query.get(id)
     return todo_schema.jsonify(todo)
 
+# #update ver1
+# @app.route('/todo/<id>', methods= ['PUT'])
+# def update_todo(id):
+#     todo = Todos.query.get(id)
+#     desc = request.json['desc']
+#     todo.desc = desc
+#     db.session.commit()
+#     return todo.schema.jsonify(todo)
+
+#update ver2
 @app.route('/todo/<id>', methods= ['PUT'])
 def update_todo(id):
-    todo = Todos.query.get(id)
-    desc = request.json['desc']
-    todo.desc = desc
-    db.session.commit()
-    return todo.schema.jsonify(todo)
+    db[id] = [update for t in db]
+    return todo_schema.jsonify(todo)
+        
 
 #Delete
 @app.route('/todo/<id>', methods= ['DELETE'])
